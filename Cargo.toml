@@ -1,0 +1,28 @@
+[package]
+name = "static-route"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["macros"]
+
+[dependencies]
+matchit = "0.7"
+http = "0.2"
+futures = "0.3.26"
+lazy_static = "1.4"
+
+[dev-dependencies]
+# Benchmarks
+criterion = { version = "0.4", features = ["async_futures"] }
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+
+[[bench]]
+name = "bench"
+harness = false
